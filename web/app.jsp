@@ -13,5 +13,13 @@
     </head>
     <body>
         <h1>App</h1>
+        
+        <!-- scope sert à dire où user doit aller chercher l'objet User -->
+        <jsp:useBean scope="session" class="com.dmr.pizzaweb.entity.User" id="user"/>
+        <%=user%>
+        <hr/>
+        <!-- cette méthode est rapide, pas besoin de jsp:useBean -->
+        ${user.username}
+        
     </body>
 </html>
