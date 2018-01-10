@@ -10,13 +10,18 @@ public class User {
     private String password;
 
     public User() {
-        this.username = "Username";
-        this.password = "Password";
+        this.username = "";
+        this.password = "";
     }
     
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public User(String username, String password) throws Exception {
+        if (username.equals("admin") && password.equals("12345")) {
+            this.username = username;
+            this.password = password;
+        }
+        else {
+            throw new Exception("Erreur username/password");
+        }
     }
 
     public String getUsername() {

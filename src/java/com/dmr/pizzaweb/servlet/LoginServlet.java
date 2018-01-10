@@ -2,12 +2,15 @@ package com.dmr.pizzaweb.servlet;
 
 import com.dmr.pizzaweb.entity.User;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,18 +30,30 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         response.setContentType("text/html;charset=UTF-8");
-        
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        
-        User user = new User(username, password);
-        
-        try (PrintWriter out = response.getWriter()) {
             
-            out.println("<h1>" + user.getUsername() + " / " + user.getPassword() + "</h1>");
-            out.println(user);
+            response.setContentType("text/html;charset=UTF-8");
+            
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            User user;
+            
+        try {            
+            user = new User(username, password);
+            
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+            
+            // Redirection http 302
+            // response.sendRedirect("app.jsp");
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher("app.jsp");
+            dispatcher.forward(request, response);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
+            dispatcher.forward(request, response);
         }
     }
 
