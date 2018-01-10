@@ -37,7 +37,8 @@ public class LoginServlet extends HttpServlet {
         
         try (PrintWriter out = response.getWriter()) {
             
-            out.println("<h1>" + username + " / " + password + "</h1>");
+            out.println("<h1>" + user.getUsername() + " / " + user.getPassword() + "</h1>");
+            out.println(user);
         }
     }
 
