@@ -4,6 +4,16 @@
     Author     : dmr
 --%>
 
+<%@page import="java.util.Date"%>
+
+<!-- Peu conseillé, on évite de mélanges plusieurs langages dans un fichier -->
+<%!
+    Date theDate = new Date();
+    Date getDate() {
+        System.out.println("In getDate() method");
+        return theDate;
+    }
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--
@@ -26,6 +36,18 @@ and open the template in the editor.
         <div class="container">
             <div class="col-sm-6 col-sm-offset-3">
                 <h1>Pizza</h1>
+                
+                <!-- Affiche la date, ne sont pas conseillé -->
+                <h3><%= getDate() %></h3>
+                <h3><%= new Date() %></h3>
+                
+                <!-- 
+                    Affiche la date, méthode conseillé 
+                    Balise jsp très utile pour d'autres choses
+                -->
+                <jsp:useBean class="java.util.Date" id="theDate"/>
+                <h3><%= theDate %></h3>
+                
                 <form action="Login" method="POST">
                     <div class="form-group">
                         <label for="username" class="control-label">Pseudo : </label>
