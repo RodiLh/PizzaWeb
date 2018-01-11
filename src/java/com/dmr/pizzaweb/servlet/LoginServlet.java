@@ -1,9 +1,11 @@
 package com.dmr.pizzaweb.servlet;
 
+import com.dmr.pizzaweb.ejb.UserDAO;
 import com.dmr.pizzaweb.entity.User;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,8 +20,20 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/Login"})
 public class LoginServlet extends HttpServlet {
+    
+    @EJB
+    UserDAO dao;
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
+            throws ServletException, IOException {
+        
+        String str = dao.sayHello("toto");
+        
+        resp.getWriter().print(str);
+    }
+    
+    
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -40,7 +54,12 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         RequestDispatcher dispatcher;
             
-        try {            
+        try {
+
+//            Méthode d'accés à la base de données, plus très utilisée
+//            InitialContext ctx = new InitialContext();
+//            DataSource dataSource = (DataSource)ctx.lookup("java;app/jdbc/pizzaConn");
+//            Connection c = dataSource.getConnection(); 
             User user = new User(username, password);
             
             
@@ -68,6 +87,6 @@ public class LoginServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }
