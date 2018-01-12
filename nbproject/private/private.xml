@@ -4,9 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/dmr/Documents/NetBeansProjects/PizzaWeb/src/java/com/dmr/pizzaweb/entity/User.java</file>
-            <file>file:/C:/Users/dmr/Documents/NetBeansProjects/PizzaWeb/web/index.jsp</file>
-            <file>file:/C:/Users/dmr/Documents/NetBeansProjects/PizzaWeb/web/app.jsp</file>
-            <file>file:/C:/Users/dmr/Documents/NetBeansProjects/PizzaWeb/web/error.jsp</file>
+            <file>file:/C:/Users/dmr/Documents/NetBeansProjects/PizzaWeb/src/java/com/dmr/pizzaweb/entity/Users.java</file>
+            <file>file:/C:/Users/dmr/Documents/NetBeansProjects/PizzaWeb/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/dmr/Documents/NetBeansProjects/PizzaWeb/src/java/com/dmr/pizzaweb/ejb/UserDAO.java</file>
             <file>file:/C:/Users/dmr/Documents/NetBeansProjects/PizzaWeb/src/java/com/dmr/pizzaweb/servlet/LoginServlet.java</file>
         </group>
     </open-files>

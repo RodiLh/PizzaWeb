@@ -1,4 +1,4 @@
-package com.dmr.pizzaweb.ejb;
+package com.dmr.pizzaweb.old;
 
 import javax.ejb.Stateless;
 

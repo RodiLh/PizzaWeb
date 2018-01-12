@@ -1,4 +1,4 @@
-package com.dmr.pizzaweb.entity;
+package com.dmr.pizzaweb.old;
 
 /**
  *

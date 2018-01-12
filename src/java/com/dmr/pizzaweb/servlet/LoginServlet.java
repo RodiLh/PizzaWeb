@@ -1,8 +1,11 @@
 package com.dmr.pizzaweb.servlet;
 
-import com.dmr.pizzaweb.ejb.UserDAO;
-import com.dmr.pizzaweb.entity.User;
+import com.dmr.pizzaweb.ejb.UsersFacade;
+import com.dmr.pizzaweb.entity.Users;
+import com.dmr.pizzaweb.old.User;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -22,17 +25,23 @@ import javax.servlet.http.HttpSession;
 public class LoginServlet extends HttpServlet {
     
     @EJB
-    UserDAO dao;
+//    UserDAO dao;
+    UsersFacade facade;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
             throws ServletException, IOException {
+        PrintWriter out = resp.getWriter();
+//        String str = dao.sayHello("toto");        
+//        out.print(str);
         
-        String str = dao.sayHello("toto");
+        List<Users> users = facade.findAll();
         
-        resp.getWriter().print(str);
-    }
-    
+        for (Users user : users) {
+            out.println(user.getPassword());
+        }
+
+    }    
     
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -65,8 +74,8 @@ public class LoginServlet extends HttpServlet {
             
             session.setAttribute("user", user);
             
-            // Redirection http 302
-            // response.sendRedirect("app.jsp");
+//             Redirection http 302
+//             response.sendRedirect("app.jsp");
             
             dispatcher = request.getRequestDispatcher("app.jsp");
             dispatcher.forward(request, response);
